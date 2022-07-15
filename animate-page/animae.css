@@ -1,0 +1,113 @@
+body {
+  --nav-load-time: 300ms;
+  --nav-link-load-time: 500ms;
+  --article-load-delay: 800ms;
+}
+
+nav {
+  /* animation-name duration style */
+  animation: nav-load var(--nav-load-time) ease-in;
+}
+
+nav li {
+  animation-name: nav-link-load;
+  animation-duration: var(--nav-link-load-time);
+  animation-timing-function: ease-in;
+  animation-delay: var(--nav-load-time);
+
+  /* alttakini 0 verdik çünkü başlangıçta olmamasını istiyoruz, animasyon bittikten sonra gene 0 a dönecek. bunun olmaması için animation-fill-mode: forwards ı kullandık. animasyon bittikten sonraki haliyle kalacak */
+  animation-fill-mode: forwards;
+  transform: scale(0);
+}
+
+nav li:first-child {
+  animation-name: nav-first-link-load;
+  animation-fill-mode: forwards;
+  transform: translateX(-1000%);
+  animation-duration: var(--nav-link-load-time);
+}
+
+nav li:last-child {
+  animation-name: nav-last-link-load;
+  animation-fill-mode: forwards;
+  transform: translateX(1000%);
+  animation-duration: var(--nav-link-load-time);
+}
+
+h1 {
+  animation: article-loader 300ms ease-in var(--article-load-delay);
+  animation-fill-mode: forwards;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+p {
+  animation: article-loader 300ms ease-in
+    calc(var(--article-load-delay) + 200ms);
+  animation-fill-mode: forwards;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+@keyframes nav-load {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes nav-link-load {
+  0% {
+    transform: scale(0);
+  }
+
+  90% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes nav-first-link-load {
+  0% {
+    transform: translateX(-1000%);
+  }
+
+  90% {
+    transform: translateX(50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nav-last-link-load {
+  0% {
+    transform: translateX(1000%);
+  }
+
+  90% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes article-loader {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

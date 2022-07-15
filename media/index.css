@@ -1,0 +1,40 @@
+body {
+  color: red;
+}
+
+.title {
+  font-size: 6rem;
+}
+
+.subtitle {
+  font-size: 4rem;
+}
+
+@media (max-width: 750px) {
+  body {
+    color: pink;
+  }
+}
+
+/* 0-500px arası max-width: 500px */
+/* 500px sonrası yukarda yazdığımız geçerli */
+@media (max-width: 500px) {
+  body {
+    color: blue;
+  }
+}
+
+/*  and yerine or anlamında "," kullanabiliriz */
+
+/* Height Widthten küçük olduğunda... */
+@media (orientation: landscape) and (max-width: 500px) {
+  .title {
+    color: green;
+  }
+}
+
+@media (orientation: portrait) {
+  .subtitle {
+    color: cyan;
+  }
+}
